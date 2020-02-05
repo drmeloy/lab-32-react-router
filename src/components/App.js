@@ -7,11 +7,12 @@ import {
   Link
 } from 'react-router-dom';
 import Home from './home/Home.jsx';
+import { Header } from './header/Header.jsx';
 
 export default function App() {
   return (
     <Router>
-      // Header
+      <Header />
       <Switch>
         <Route exact path='/home' component={Home} />
         // Route List of Characters
