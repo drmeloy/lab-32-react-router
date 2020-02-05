@@ -7,7 +7,8 @@ import {
   Link
 } from 'react-router-dom';
 import Home from './home/Home.jsx';
-import { Header } from './header/Header.jsx';
+import Header from './header/Header.jsx';
+import List from './list/List.jsx';
 
 export default function App() {
   return (
@@ -15,6 +16,8 @@ export default function App() {
       <Header />
       <Switch>
         <Route exact path='/home' component={Home} />
+        <Route exact path='/characters' component={List} />
+        <Route exact path='/characters/:characterName' component={Home} />
         // Route List of Characters
       </Switch>
     </Router>
