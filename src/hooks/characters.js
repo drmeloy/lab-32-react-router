@@ -3,11 +3,12 @@ import { getCharacterList } from '../services/rickAndMortyApi.js';
 
 export const useGetCharacters = ({ searchTerm }) => {
   const [characterList, setCharacterList] = useState({ info: {}, results: [] });
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    getCharacterList(searchTerm)
+    getCharacterList(searchTerm, page)
       .then(setCharacterList);
-  }, [searchTerm]);
+  }, [searchTerm, page]);
 
-  return characterList;
+  return { characters: characterList.results, info: characterList.info, page, setPage };
 }

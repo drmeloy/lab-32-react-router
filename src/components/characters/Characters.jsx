@@ -1,12 +1,10 @@
 import React from 'react';
 import { useGetCharacters } from '../../hooks/characters';
 import { Link } from 'react-router-dom';
+import Pagination from '../pagination/Pagination.jsx';
 
 const Characters = searchTerm => {
-  const data = useGetCharacters(searchTerm);
-  const characters = data.results;
-  const info = data.info;  
-
+  const { characters, info, page, setPage } = useGetCharacters(searchTerm);
   
   const characterList = characters ? 
     characters.map(character => (
@@ -23,9 +21,12 @@ const Characters = searchTerm => {
     <li>No results found, please try another search</li>
 
   return (
-    <ul>
-      {characterList}
-    </ul>
+    <>
+      <Pagination info={info} page={page} setPage={setPage} />
+      <ul>
+        {characterList}
+      </ul>
+    </>
   );
 }
 
