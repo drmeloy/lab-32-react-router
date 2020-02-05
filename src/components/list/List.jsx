@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
-import { useGetCharacters } from '../../hooks/characters';
-import { Link } from 'react-router-dom';
+import Characters from '../characters/Characters.jsx';
+
 
 const List = () => {
   const [query, setQuery] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const characters = useGetCharacters(searchTerm);
-  console.log(characters);
-  
-
-  const characterList = characters.map(character => (
-    <li key={character.name}>
-      <Link to={`/characters/${character.name}`}>
-        <figure>
-          <img src={character.image}/>
-          <p>{character.name}</p>
-        </figure>
-      </Link>
-    </li>
-  ));
+  const handleSubmit = event => {
+    event.preventDefault();
+    setSearchTerm(query);
+  }
 
   return (
     <>
-      //Search Box
-      {characterList}
+      <form onSubmit={handleSubmit} >
+        <p>Search for a character</p>
+        <input type='text' onChange={({ target }) => setQuery(target.value)} />
+        <button>Search</button>
+      </form>
+      <Characters searchTerm={searchTerm} />
     </>
   );
 };
