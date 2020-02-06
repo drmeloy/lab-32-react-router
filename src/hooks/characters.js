@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCharacterList } from '../services/rickAndMortyApi.js';
+import { getCharacterList, getOne } from '../services/rickAndMortyApi.js';
 
 export const useGetCharacters = ({ searchTerm }) => {
   const [characterList, setCharacterList] = useState({ info: {}, results: [] });
@@ -11,4 +11,15 @@ export const useGetCharacters = ({ searchTerm }) => {
   }, [searchTerm, page]);
 
   return { characters: characterList.results, info: characterList.info, page, setPage };
-}
+};
+
+export const useGetOne = id => {
+  const [details, setDetails] = useState({});
+
+  useEffect(() => {
+    getOne(+id)
+      .then(setDetails)
+  }, [id]);
+
+  return {details, setDetails};
+};

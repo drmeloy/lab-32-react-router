@@ -9,16 +9,16 @@ import {
 import Home from './home/Home.jsx';
 import Header from './header/Header.jsx';
 import List from './list/List.jsx';
+import Details from './details/Details.jsx';
 
 export default function App() {
   return (
     <Router>
       <Header />
       <Switch>
-        <Route exact path='/home' component={Home} />
-        <Route exact path='/characters' component={List} />
-        <Route exact path='/characters/:characterName' component={Home} />
-        // Route List of Characters
+        <Route path='/home' component={Home} />
+        <Route path='/characters/:characterId' component={Details} />
+        <Route path='/characters' component={List} />
       </Switch>
     </Router>
   )

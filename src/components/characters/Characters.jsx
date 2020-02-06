@@ -9,7 +9,7 @@ const Characters = searchTerm => {
   const characterList = characters ? 
     characters.map(character => (
       <li key={character.id}>
-        <Link to={`/characters/${character.name}`}>
+        <Link to={`/characters/${character.id}`}>
           <figure>
             <img src={character.image}/>
             <p>{character.name}</p>
@@ -22,7 +22,7 @@ const Characters = searchTerm => {
 
   return (
     <>
-      <Pagination info={info} page={page} setPage={setPage} />
+      {characters && <Pagination info={info} page={page} setPage={setPage} />}
       <ul>
         {characterList}
       </ul>
