@@ -1,9 +1,16 @@
 import React from 'react';
 import Characters from '../characters/Characters.jsx';
 import { useGetCharacters } from '../../hooks/characters.js';
+import { useLocation } from 'react-router-dom';
 
 const List = () => {
-  const { characters, info, page, pageUp, pageDown, handleSubmit, query, setQuery } = useGetCharacters();  
+  const { characters, info, page, pageUp, pageDown, handleSubmit, query, setQuery } = useGetCharacters(); 
+  
+  // const { search } = useLocation();
+  // const params = new URLSearchParams(search);
+  // const name = params.set('name') || '';
+  // console.log(name);
+  
 
   return (
     <>

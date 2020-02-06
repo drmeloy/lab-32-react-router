@@ -8,8 +8,6 @@ export const useGetCharacters = () => {
   const params = new URLSearchParams(search);
   const name = params.get('name') || '';
   const page = +params.get('page') || 1;
-  console.log(name);
-  
 
   const [characterList, setCharacterList] = useState({ info: {}, results: [] });
   const [query, setQuery] = useState(params.get('name') || '');
