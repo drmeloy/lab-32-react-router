@@ -16,7 +16,14 @@ export const useGetCharacters = () => {
     getCharacterList(name, page)
       .then(setCharacterList);
   }, [name, page]);
-  
+
+  useEffect(() => {
+    history.listen(({ search }) => {
+      const updatedParams = new URLSearchParams(search);
+      setQuery(updatedParams.get('name') || '');
+    });
+  }, [])
+      
 
   const pageDown = () => {
     history.push(`/characters/?page=${page - 1}&name=${name}`)
