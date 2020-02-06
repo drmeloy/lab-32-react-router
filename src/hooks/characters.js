@@ -1,16 +1,30 @@
 import { useState, useEffect } from 'react';
 import { getCharacterList, getOne } from '../services/rickAndMortyApi.js';
+import { useHistory, useLocation } from 'react-router-dom';
 
-export const useGetCharacters = ({ searchTerm }) => {
+export const useGetCharacters = () => {
   const [characterList, setCharacterList] = useState({ info: {}, results: [] });
-  const [page, setPage] = useState(1);
+
+  const { search } = useLocation();
+  const history = useHistory();
+  const params = new URLSearchParams(search);
+  const name = params.get('name') || '';
+  const page = +params.get('page') || 1;
 
   useEffect(() => {
-    getCharacterList(searchTerm, page)
+    getCharacterList(name, page)
       .then(setCharacterList);
-  }, [searchTerm, page]);
+  }, [name, page]);
 
-  return { characters: characterList.results, info: characterList.info, page, setPage };
+  const pageDown = () => {
+    history.push(`/characters/?page=${page - 1}&name=${name}`)
+  }
+
+  const pageUp = () => {
+    history.push(`/characters/?page=${page + 1}&name=${name}`)
+  }
+
+  return { characters: characterList.results, info: characterList.info, pageDown, pageUp, page };
 };
 
 export const useGetOne = id => {
@@ -23,3 +37,4 @@ export const useGetOne = id => {
 
   return {details, setDetails};
 };
+

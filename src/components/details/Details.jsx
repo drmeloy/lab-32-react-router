@@ -1,14 +1,11 @@
 import React from 'react';
 import { useGetOne } from '../../hooks/characters';
 
-const Details = ({ match }) => {
+const Details = ({ match, history }) => {
   const { details } = useGetOne(match.params.characterId);
-  console.log(details);
+  console.log(history);
   
-  const { name, image, status, species, type, gender, origin, location } = details;
-  console.log(origin);
-  console.log(location);
-  
+  const { name, image, status, species, gender, origin, location } = details;  
 
   return (
     <>
@@ -19,6 +16,7 @@ const Details = ({ match }) => {
       <p>Gender: {gender}</p>
       {origin && <p>Origin: {origin.name}</p>}
       {location && <p>Location: {location.name}</p>}
+      <button onClick={() => history.goBack()}>Back</button>
     </>
   );
 }

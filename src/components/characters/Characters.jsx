@@ -3,13 +3,13 @@ import { useGetCharacters } from '../../hooks/characters';
 import { Link } from 'react-router-dom';
 import Pagination from '../pagination/Pagination.jsx';
 
-const Characters = searchTerm => {
-  const { characters, info, page, setPage } = useGetCharacters(searchTerm);
+const Characters = () => {
+  const { characters, info, page, pageUp, pageDown,  } = useGetCharacters();
   
   const characterList = characters ? 
     characters.map(character => (
       <li key={character.id}>
-        <Link to={`/characters/${character.id}`}>
+        <Link to={`/characters/details/${character.id}`}>
           <figure>
             <img src={character.image}/>
             <p>{character.name}</p>
@@ -22,7 +22,7 @@ const Characters = searchTerm => {
 
   return (
     <>
-      {characters && <Pagination info={info} page={page} setPage={setPage} />}
+      {characters && <Pagination info={info} page={page} pageUp={pageUp} pageDown={pageDown} />}
       <ul>
         {characterList}
       </ul>

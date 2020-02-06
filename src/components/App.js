@@ -17,7 +17,7 @@ export default function App() {
       <Header />
       <Switch>
         <Route path='/home' component={Home} />
-        <Route path='/characters/:characterId' component={Details} />
+        <Route path='/characters/details/:characterId' component={Details} />
         <Route path='/characters' component={List} />
       </Switch>
     </Router>
