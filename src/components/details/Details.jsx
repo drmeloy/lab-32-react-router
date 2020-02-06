@@ -3,7 +3,6 @@ import { useGetOne } from '../../hooks/characters';
 
 const Details = ({ match, history }) => {
   const { details } = useGetOne(match.params.characterId);
-  console.log(history);
   
   const { name, image, status, species, gender, origin, location } = details;  
 

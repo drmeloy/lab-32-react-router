@@ -1,11 +1,8 @@
 import React from 'react';
-import { useGetCharacters } from '../../hooks/characters';
 import { Link } from 'react-router-dom';
 import Pagination from '../pagination/Pagination.jsx';
 
-const Characters = () => {
-  const { characters, info, page, pageUp, pageDown,  } = useGetCharacters();
-  
+const Characters = ({ characters, info, page, pageUp, pageDown }) => {
   const characterList = characters ? 
     characters.map(character => (
       <li key={character.id}>

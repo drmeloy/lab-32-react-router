@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Characters from '../characters/Characters.jsx';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useGetCharacters } from '../../hooks/characters.js';
 
 const List = () => {
-  const history = useHistory();
-  const { search } = useLocation();
-  const params = new URLSearchParams(search);
-  const [query, setQuery] = useState(params.get('name'));
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    history.push(`/characters/?name=${query}`);
-  }
+  const { characters, info, page, pageUp, pageDown, handleSubmit, query, setQuery } = useGetCharacters();  
 
   return (
     <>
@@ -20,7 +12,7 @@ const List = () => {
         <input type='text' value={query} onChange={({ target }) => setQuery(target.value)} />
         <button>Search</button>
       </form>
-      <Characters />
+      <Characters characters={characters} info={info} page={page} pageUp={pageUp} pageDown={pageDown} />
     </>
   );
 };
